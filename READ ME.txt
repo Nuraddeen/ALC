@@ -1,0 +1,3 @@
+1. Database details in included in the file MyModule.js
+2. All Students passports are uploaded and then moved to Passports folder, so there may be need to create that folder
+3. 

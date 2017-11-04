@@ -1,0 +1,182 @@
+<!-- 
+	PROGRAM	ALGORITHM
+1. if action = register
+	
+2. else if action = showlist
+	1.1 fetch all students list from db and display with edit and delete button
+
+3. else if action = edit
+	3.1 if id is set
+		3.1.1 fetch std details from the db
+		3.1.2 if std exists
+			3.1.2.1 show edit std form with cancel and id field (hidden)
+		3.1.3 else 
+			3.1.3.1 show error that std does not exists with view all list option
+	3.2 else if id is not set
+		3.2.1 show error that id is not set with view all list option
+4. else if action = update
+	4.1 if id is set
+	4.2 get all files 
+	4.3 if all files are valid, update info
+	4.4 else display error with view/register button
+	
+5. else if action = delete
+	5.1 if id is set, delete std info and show success with buttons
+	5.2 else show error with buttons
+	
+6. else, show register form
+	
+
+ !-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Register Student</title>
+	 
+ 
+ 
+<script type = "text/javascript" src = "jquery-3.2.1.min.js"></script>
+
+
+<style type = "text/css>" >
+
+.fieldset { 
+   background-color:#fff4c9;
+	font-size:16px;
+	font-weight: bold;
+}
+
+body { 
+	margin-left:200px;
+	margin-right:100px;
+}
+
+.fieldset legend {
+text-align: center;
+}
+
+.star {
+	font-weight:bold;
+	color:#F00;
+}
+</style>
+
+</head>
+<body>
+
+ 
+			
+		 <br/>
+						<h1 style = 'color:orange; text-align: center; font-weight:bold; background-color:#FFF'>Register New Student </h1>
+					
+						<a href = 'null'> Back to Home Page</a>
+				
+			 	<br> 
+					<form  method = "POST" action = "Register" name ="frmStudentInfo" enctype="multipart/form-data" > 
+						All fields marked <span class = "star" > * </span> are required
+						<strong><fieldset style = '  background-color:#fff4c9;font-size:16px;font-weight: bold;'> <legend align = 'center'><u>~~~~~~1~ PERSONAL INFORMATION~~~~~~</u> </legend></br>
+						
+						<table align = 'center'>
+						
+						
+						
+						<tr> <td>
+						<strong>Full Name<span class = "star" > * </span> </strong> </td> <td>
+						<input type = "text"  name = "stdName"  placeholder = "First Name, Middle Name, Last Name" size = "70px" style = "background-color:#fff;" class = "txfStyle"  required>  <br/><br/>
+						
+						</td></tr>
+						
+						<tr> <td>
+						<strong> Date of birth<span class = "star" > * </span> </strong>  </td> <td>
+						<input type = "text"  name = "stdDOB"  placeholder = "02-12-1991" size = "70px" style = "background-color:#fff;" class = "txfStyle"  required>  <br/><br/>
+						
+						</td></tr>
+						
+						 
+						<tr> <td >
+						<strong> Gender<span class = "star" > * </span> </strong> </td ><td > <select  style = 'width:440px' name =  "stdGender" required > <option value = 'Male'> Male </option>  <option value = 'Female'> Female </option> </select>  <br/><br/> </td> </tr>
+						 
+						<tr> <td>
+						<strong> Class<span class = "star" > * </span> </strong> </td ><td > <select  style = 'width:440px'  name =  "stdClass" required> <option value = 'Primay 1'> Primay 1 </option>  <option value = 'Primay 2'> Primay 2 </option>  <option value = 'Primay 3'> Primay 3 </option> </select> <br/><br/> </td> </tr>
+						
+						
+						<tr> <td>
+						<strong> Home Address<span class = "star" > * </span></strong>  </td> <td>
+						<input type = "text"  name = "stdAddress"  placeholder = "Enter Student Home Address Here" size = "70px" style = "background-color:#fff;" class = "txfStyle" required/>  <br/><br/>
+						</td> </tr>	
+						
+						<tr><td>
+						<strong> Phone Number <span class = "star" > * </span> </strong> </td> <td>
+						<input type = "text"  name = "stdPhoneNum"  placeholder = "Enter Student Phone No Here" size = "70px" style = "background-color:#fff;" class = "txfStyle" required/>  <br/><br/>
+						</td> </tr>
+							
+						<tr> <td><strong>  Email  <span class = "star" > * </span> </strong> </td> <td>
+						<input type = "text"  name = "stdEmail"  placeholder = "Enter Student Email Here" size = "70px" style = "background-color:#fff;" class = "txfStyle"  required />  <br/><br/>
+						</td> </tr>
+							<tr> <td><strong>  Passport  <span class = "star" > * </span> </strong> </td> <td>
+						<input type='file' accept = "image/*"  name = 'stdPassport' id = 'stdPassport'    required/>  <br/><br/>
+						</td> </tr>
+							
+						</strong> 
+							
+						</table>
+							</fieldset> </strong>
+							
+							
+						<br/> <br/>
+					 
+						
+						
+					<input type = 'reset' name='btnReset'  value='Reset Fields'  class = 'btnStyle' style = 'float:left; ' />
+	
+					<input type = 'submit'   value= 'Submit' class = 'btnStyle' style = 'float:right;'/>
+					
+							<br> <br> 
+						
+					<br> <br> 
+					</form>
+				 
+			
+			<br/> <br/> 
+				
+		 
+	
+</body>
+
+<script type = "text/javascript">
+
+// this function shows selected image b4 upload and checks its validity
+function previewImage (srcID,  prevID,  notifID) {
+	var fileObj = $("#"+srcID)[0].files[0],
+	errorText = "";
+ //alert('wlcm');
+var fileSize = fileObj.size, 
+  fileType =  fileObj.type;
+  
+//check type
+	if (fileType != "image/jpeg" && fileType !=  "image/png" && fileType !=  "image/jpeg" && fileType != "image/bmp" && fileType !=  "image/gif")
+		errorText = "Wrong file Type<br/>";
+	
+	if (fileSize>200000)  //wrong size 200 KB
+		errorText += "File too large (Max is 200kb)";
+		
+		if (errorText == "" ) {
+			document.getElementById(prevID).src = window.URL.createObjectURL(fileObj);
+			$("#"+notifID).html('');
+		}
+		
+		else {
+			$("#"+notifID).html(errorText);
+			$("#"+srcID).val('');
+			document.getElementById(prevID).src =null;
+		}
+
+}
+
+</script>
+
+
+</html>
